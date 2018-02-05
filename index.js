@@ -4,47 +4,41 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var User = require('C:/Users/musul/Desktop/H-NDIR/User');
 
-//Not installed using npm install as it is a core module
-//It is installed with Node, can be found in lib/
-var path = require('path');
 
-//initialization: doesn't have to be named as the file
-var app = express();
-//Args: Port to listen to, Call back fcn
- app.listen(3000, function(){
-	console.log('Server Started on Port 3000....');
-});
-
-//Get home page
-router.get('/', function(req, res, next){
-	res.render('index', {title: 'Express'});
-});
+/*--------------------------CONSTRUCT HTTP SERVER-------------------*/
+//1. call Library
+var http = require('http');
+//for url
+var url = require('url');
 
 
-router.post('/register', function(req, res){
-	if(req.body.email && req.body.username && req.body.password && req.body.passwordConf){
-		var userdata = {
-			email: req.body.email,
-			username: req.body.username,
-			password: req.body.password,
-			passwordConf: req.body.passwordConf,
-		}	
-	}
-	//Insert data on DB using schema.create
-	User.create(userdata, function(err, User){
-		if(err){
-			return next(err)
-		}
-		else {
-			//Successful Login
-			return res.redirect('/profile');
-		}
-	});
 
-});
+ // 2. Create Server
+var server = http.createServer(function(req, res){
+	var page = url.parse(req.url).pathname;
+	console.log(page);
 
-module.exports = router;
+	//Response
+	//code 200 = Everything is fine so html page can be received
+	//content-type = to indicate the MIME type for the html response
+	res.writeHead(200, {"content-type": "text/html"});
+	// ending the response- printed on website
+	res.write('Hello Node again!');
 
-	
+	/*res.end('<!DOCTYPE html>'+
+'<html>'+
+' <head>'+
+' <meta charset="utf-8" />'+
+' <title>My Node.js page!</title>'+
+' </head>'+ 
+' <body>'+
+' <p>Here is a paragraph of <strong>HTML</strong>!</p>'+
+' </body>'+
+'</html>');*/
+}); 
 
-	
+ //3. Server launched and listens to the port 3000
+// avoid port 80: already used by computer
+ server.listen(3000);
+
+
