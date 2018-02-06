@@ -31,4 +31,22 @@
 	res for response: an object that we need to fill to give a response to the visitor >> the html code of the page to be sent to the visitor
 	
 	PT2:
-	send an HTML response >> forllow HTTP standards
+	send an HTML response using write() >> follow HTTP standards
+
+##Day4: Dtermine the usage of different pages
+	I have the following pages:
+	Register
+	Login
+	Logout
+	Forgot Password
+	Main Page
+	View Profile
+	Update Profile
+	MyLists
+	NewList
+	List[Name] (i.e ListCsc)
+	MyfrequentChoices
+
+	>> Code updated
+	Params come after the pathname?
+	------------------------Code Works Fine--------------------
