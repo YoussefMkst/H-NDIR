@@ -33,7 +33,8 @@
 	PT2:
 	send an HTML response using write() >> follow HTTP standards
 
-##Day4: Dtermine the usage of different pages
+##Day4: Determine the usage of different pages
+	Build skeleton only
 	I have the following pages:
 	Register
 	Login
@@ -50,3 +51,54 @@
 	>> Code updated
 	Params come after the pathname?
 	------------------------Code Works Fine--------------------
+
+	Listening to event: JQuery required
+	JQuery : Javascript Library
+
+##Day5: 
+		Code added then removed:
+		"fs.readFile('./login.html', function (err, html) {
+  	 
+  	if (err){throw err}
+      http.createServer(function(request, response) {  
+        response.writeHeader(200, {"Content-Type": "text/html"});  
+        response.write(html);  
+        response.end();  
+    }).listen(8080);
+  });"
+
+  Instead I used: Res.redirect('myURL');
+  Unfortunately is gives: resredirect is not a fcn
+  --------------------------
+  Added: app = express();
+  then
+	   app.get('/', function(request,respond) {
+	      respond.redirect('your_url'); //Pass between the brackets your URL.
+	    });
+	  Output: Gives no error but doesn't redirect
+
+
+	  ----------------------------------------
+	  Start from #0 of stage 3
+
+	  Change Server by app : app.listen(3000);
+	  res.sendFile('C:/Users/musul/Desktop/H-NDIR/login.html');
+	  is equivalent to:
+	  	res.sendFile(path.join(__dirname, 'login.html'));
+
+	 app.post('/kutsukutsu', function(req, res){
+	console.log('bjr');
+	if(req.body.username === "admin" && req.body.password === "admin"){
+		console.log('Mer7baaa');
+	}
+	});
+		Return Mer7baaa  
+
+		AJAX = Asynchronous JavaScript And XML.
+
+##Day6:
+	Restarting NodeJS work
+##Day7:
+	DB set.
+
+ 

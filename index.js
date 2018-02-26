@@ -3,27 +3,46 @@ var express = require('express');
 var bodyParser = require('body-parser'); 
 var router = express.Router();
 var User = require('C:/Users/musul/Desktop/H-NDIR/User');
-
-
+var app = express();
+var path = require('path');
+var EventEmitter = require('events').EventEmitter;
+var logger = new EventEmitter();
 /*--------------------------CONSTRUCT HTTP SERVER-------------------*/
 //1. call Library
 var http = require('http');
 //for url
 var url = require('url');
 
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
+
 //Parse user input into queries
 var querystring = require('querystring');
 
- // 2. Create Server
-var server = http.createServer(function(req, res){
+app.get('/login', function(req, res){
+	// to redirect to request: res.redirect('login.html');	
+	res.sendFile(path.join(__dirname, 'login.html'));	
+	console.log('olele');
+});
 
+app.post('/submit', function(req, res){
+	var name = req.body.username+' '+ req.body.password;
+	res.send("Welcome");
+	});
+
+/* // 2. Create Server
+var server = http.createServer(function(req, res){
+	res.writeHead(200, {"content-type": "text/html"});
 	var page = url.parse(req.url).pathname;
+
 	console.log(page);
 
+	
 	//Response
 	//code 200 = Everything is fine so html page can be received
 	//content-type = to indicate the MIME type for the html response
-	res.writeHead(200, {"content-type": "text/html"});
+	
 	
 
 /*----------MY CASES----------*/
@@ -40,66 +59,18 @@ var server = http.createServer(function(req, res){
 	List[Name] (i.e ListCsc)
 	MyfrequentChoices
 */
-
+/*
 if(page == '/'){
-	res.write('HERE ASK USER TO REGISTER, LOGIN, or REMEMBER PASSWORD')
-}
-else if (page =='/register'){
-
-	res.write('HERE AUTHENTICATION')
-
-	//Params come after the pathname?
-	var param = querystring.parse(url.parse(req.url).query);
-	var Name = param['Username'];
-	var email = param['email'];
-	if(param['password'] === param['passwordConf'])
-		var password = param['password'];
-	else
-		res.write('PASSWORDS DO noT MATCH');
-		//Page must be reloaded
-}
-else if (page =='/login'){
-	res.write('HERE AUTHENTICATION');
-}
-else if (page =='/logout'){
-	res.write('LOGGED OUT');
-}
-else if (page =='/forgotpassword'){
-	res.write('ENTER EMAIL, SEND DETAILS TO EMAIL IF IN DB');
-}
-else if (page =='/mainpage'){
-	res.write('LINKS TO ALL OTHER VIEWS');
-}
-else if (page =='/viewprofile'){
-	res.write('NAME, EMAIL, PHONE NUMBER, COUNTRY, LOCATION, CHANGE INFO');
-}
-else if (page =='/updateprofile'){
-	res.write('NAME, EMAIL, PHONE NUMBER, COUNTRY, LOCATION, SAVE');
-}
-else if (page =='/myLists'){
-	res.write('LINK TO EACH EXISTING LIST, LINKS ON DB');
-}
-else if (page =='/newList'){
-	res.write('CREATE NEW LINK AND SAVE TO DB');
-}
-else if (page =='/list[name]'){
-	res.write('WHEN WE OPEN THE List, WHAT CAN WE DO?');
-}
-else if (page =='/myfrequentchoices'){
-	res.write('DROP DOWN LIST ELEMENTS');
-}
-// ending the response- printed on website
-res.end();
-	
-
 
 
 
 }); //END OF SERVER CALL BACK FCN
-
+*/
 
  //3. Server launched and listens to the port 3000
 // avoid port 80: already used by computer
- server.listen(3000);
+ app.listen(3000, function(req,res){
+ 	console.log('Server App on Port 3000....');
+ });
 
 

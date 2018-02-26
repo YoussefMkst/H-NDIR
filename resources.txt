@@ -1,0 +1,60 @@
+>>AJAX:
+
+A1 https://www.quora.com/How-can-we-add-Ajax-in-HTML-code
+
+
+>>DATABASE:
+
+DB1: https://highlyscalable.wordpress.com/2012/03/01/nosql-data-modeling-techniques/
+
+DB2: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+
+>>EXPRESS:
+
+E1: https://scotch.io/tutorials/use-expressjs-to-get-url-and-post-parameters#post-parameters
+
+E2: http://www.tutorialsteacher.com/nodejs/expressjs-web-application
+
+>>MONGO:
+
+M1: http://mongoosejs.com/docs/
+M2: https://docs.mongodb.com/manual/reference/program/mongod/
+M3: https://docs.mongodb.com/tutorials/install-mongodb-on-windows/
+
+M4: http://mongodb.github.io/node-mongodb-native/2.2/installation-guide/installation-guide/
+
+
+>>HTML:
+
+H1: https://github.com/nodejs/node-v0.x-archive/wiki/modules#templating
+
+
+>>JAVASCRIPT:
+
+J1: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics
+
+
+>>JQuery:
+
+Q1: https://learn.jquery.com/events/introduction-to-custom-events/
+
+
+
+>>NODE:
+
+N1: https://medium.com/of-all-things-tech-progress/starting-with-authentication-a-tutorial-with-node-js-and-mongodb-25d524ca0359
+
+N2: https://www.youtube.com/watch?v=A6mMZSIxNAI&index=2&list=PLVBXNyNyLNq3MGbopdcvWc25xijtWaA6X
+
+N3: https://openclassrooms.com/courses/ultra-fast-applications-using-node-js/creating-your-first-app-with-node-js
+
+N4: https://gist.github.com/aerrity/fd393e5511106420fba0c9602cc05d35
+
+N5: http://campus.codeschool.com/courses/real-time-web-with-node-js/level/1/video/1
+
+N6: Codeschool: Real time web with node js
+
+>>REST:
+
+R1: https://www.youtube.com/watch?v=Q-BpqyOT3a8
+
