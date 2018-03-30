@@ -1,0 +1,88 @@
+<!Doctype html> 
+
+<html>
+	<meta charset="UTF-8">
+	<title>Your Profile</title>
+
+	<!-- CSS (load bootstrap from a CDN) -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+	body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+	.w3-row-padding img {margin-bottom: 12px}
+	/* Set the width of the sidebar to 120px */
+	.w3-sidebar {width: 120px;background: #222;}
+	/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+	#main {margin-left: 120px}
+	/* Remove margins from "page content" on small screens */
+	@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+	</style>
+
+	<!---->
+
+	 <!-- Icon Bar (Sidebar - hidden on small screens) -->
+    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+      <img src="" style="width:100%">
+      <a href="/Profile" class="w3-bar-item w3-button w3-padding-large w3-purple">
+        <i class="fa fa-user w3-xxlarge"></i>
+        <p>Profile</p>
+      </a>
+      <a href="/Update" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+        <i class="fa fa-address-card-o w3-xxlarge"></i>
+        <p>Update Profile</p>
+      </a>
+
+      <a href="/MyLists" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+        <i class="fa fa-pencil-square-o w3-xxlarge"></i>
+        <p>MyLists</p>
+      </a>
+
+      <a href="/CreateList" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+        <i class="fa fa-plus-square w3-xxlarge"></i>
+        <p>Create List</p>
+      </a>
+
+    </nav>
+     <!-- Navbar on small screens (Hidden on medium and large screens) -->
+
+    <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+      <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+        <a href="/Profile" class="w3-bar-item w3-button" style="width:25% !important">Profile</a>
+        <a href="/UpdateProfile" class="w3-bar-item w3-button" style="width:25% !important">Update Profile</a>
+        <a href="/MyLists" class="w3-bar-item w3-button" style="width:25% !important">My Lists</a>
+        <a href="/CreateList" class="w3-bar-item w3-button" style="width:25% !important">Create List</a>
+      </div>
+    </div>
+     <!-- Page Content -->
+
+    <div class="w3-padding-large" id="main">
+    	<header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    	</header>
+
+    	<body class="w3-black w3-padding-32 w3-black ">
+    	<div id ="parent" align="left">
+   		 <form id= "ShowProfile" action = "/submit" method = "post">
+			Username: <input type="text" name="Username" id ="Username" margin = auto><br>
+			Password: <input type="text" name="Password" id= "Password" margin = auto ><br>
+			Email: <input type="text" name="Email" id ="Email" margin = auto><br>
+
+		 <input name="Update" value="Update" type="submit" />
+	</form>
+	</div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript' src="../Profile.js"></script>
+        <script>
+            var socket = io.connect('http://localhost:8080');
+         
+        </script>
+		<footer>
+   			 <% include ../partials/footer %>
+		</footer>
+   
+    </body>
+</html>

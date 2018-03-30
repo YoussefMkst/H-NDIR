@@ -4,16 +4,22 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var User = require('C:/Users/musul/Desktop/H-NDIR/User');
 var app = express();
-var path = require('path');
+var MongoClient = require('mongodb').MongoClient;
+var events = require('events');
+var uri = "mongodb://Midri:Mmta1-49@gettingstarted-shard-00-00-hyjsm.mongodb.net:27017,gettingstarted-shard-00-01-hyjsm.mongodb.net:27017,gettingstarted-shard-00-02-hyjsm.mongodb.net:27017/test?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
+
+
 var EventEmitter = require('events').EventEmitter;
 var logger = new EventEmitter();
+var path = require('path');
 /*--------------------------CONSTRUCT HTTP SERVER-------------------*/
 //1. call Library
 var http = require('http');
 //for url
-var url = require('url');
+var url = "mongodb://localhost:27017/";
 
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
 
@@ -22,28 +28,18 @@ var querystring = require('querystring');
 
 app.get('/login', function(req, res){
 	// to redirect to request: res.redirect('login.html');	
-	res.sendFile(path.join(__dirname, 'login.html'));	
+	res.sendFile(path.join(__dirname, 'login.html'));
+
 	console.log('olele');
 });
 
 app.post('/submit', function(req, res){
-	var name = req.body.username+' '+ req.body.password;
-	res.send("Welcome");
-	});
-
-/* // 2. Create Server
-var server = http.createServer(function(req, res){
-	res.writeHead(200, {"content-type": "text/html"});
-	var page = url.parse(req.url).pathname;
-
-	console.log(page);
-
+	//Username as written in the html file
+	console.log(req.body.Username);
 	
-	//Response
-	//code 200 = Everything is fine so html page can be received
-	//content-type = to indicate the MIME type for the html response
-	
-	
+	res.send(req.body);
+});
+
 
 /*----------MY CASES----------*/
 /*  

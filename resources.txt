@@ -1,13 +1,23 @@
 >>AJAX:
 
-A1 https://www.quora.com/How-can-we-add-Ajax-in-HTML-code
+A1: https://www.quora.com/How-can-we-add-Ajax-in-HTML-code
 
+>> CORDOVA:
+
+C1: https://cordova.apache.org/docs/en/latest/guide/cli/index.html#add-plugins
+
+>> CSS:
+CS1: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_dark_portfolio&stacked=h
+
+CS2: https://www.w3schools.com/w3css/w3css_colors.asp
 
 >>DATABASE:
 
 DB1: https://highlyscalable.wordpress.com/2012/03/01/nosql-data-modeling-techniques/
 
 DB2: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+
+DB3: http://www.informit.com/articles/article.aspx?p=2339664
 
 >>EXPRESS:
 
@@ -53,6 +63,12 @@ N4: https://gist.github.com/aerrity/fd393e5511106420fba0c9602cc05d35
 N5: http://campus.codeschool.com/courses/real-time-web-with-node-js/level/1/video/1
 
 N6: Codeschool: Real time web with node js
+
+N7: https://scotch.io/tutorials/use-ejs-to-template-your-node-application#our-test-application 
+
+N8: https://www.npmjs.com/package/express-ejs-layouts
+
+N9: https://codeforgeek.com/2014/09/manage-session-using-node-js-express-4/
 
 >>REST:
 

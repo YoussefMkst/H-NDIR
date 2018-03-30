@@ -5,22 +5,31 @@
 		<title> Authentication </title>
 	</head>
 	<body>
-		<form action = "/submit" method = "post">
+		<form id= "Authenticate" action = "/submit" method = "post">
 			Username: <input type="text" name="Username"><br>
 			Password: <input type="text" name="Password"><br>
 		 <input name="Login" value="Login" type="submit" />
 		</form>
-		
-		<script>
-		$.ajax({
-			url: "/login"
-			data: { username: $('.Username').val(), password = $('.Password').val() },
-			method: "POST"
-			success: (data) => {
-		console.log(data)
-		}
-		});
-
-		</script>
+		 <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+		 <script type="test/javascript" >
+		 	$(function(){
+		 		('#submit').click(function(e){
+		 			e.preventDefault();
+		 			console.log('button clicked');
+		 			var data ={};
+		 			data.username = "Username";
+		 			data.password = "Password";
+		 			$.ajax({
+		 				type: 'POST',
+		 				data: JSON.parse(JSON.stringify(data)),
+		 				contentType: 'application/json',
+		 				success: fucntion(data){
+		 					consle.log('success');
+		 					console.log(JSON.parse(JSON.stringify(data)));
+		 				}
+		 			});
+		 		});
+		 	});
+		 </script>
 	</body>
 </html>

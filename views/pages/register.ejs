@@ -1,0 +1,28 @@
+<!Doctype html> 
+
+<html>
+	<head>
+		<% include ../partials/head %>
+		<meta charset="utf-8" />
+		<title> Authentication </title>
+	</head>
+	<body>
+		<header> 
+			<% include ../partials/header %>
+		</header>
+		<form id= "Register" action = "/register" method = "post">
+			Username: <input type="text" name="Username"><br>
+			Password: <input type="text" name="Password"><br>
+			Repeat Password: <input type="text" name="RPassword"><br>
+			email: <input type="email" name="email"><br>
+		 <input name="Register" value="Register" type="submit" />
+		</form>
+		<script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://localhost:8080');
+        </script>
+		<footer>
+   			 <% include ../partials/footer %>
+		</footer>
+	</body>
+</html>
