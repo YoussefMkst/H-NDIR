@@ -12,12 +12,14 @@
 		</header>
 		<form id= "Authenticate" action = "/submit" method = "post">
 			Username: <input type="text" name="Username"><br>
-			Password: <input type="text" name="Password"><br>
+			Password: <input type="password"  name="Password"><br>
+						
 		 <input name="Login" value="Login" type="submit" />
 		</form>
 		<script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io.connect('http://localhost:8080');
+ 
         </script>
 		<footer>
    			 <% include ../partials/footer %>

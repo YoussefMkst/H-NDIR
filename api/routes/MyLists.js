@@ -13,6 +13,7 @@ const mydb = init.db;
 const ID = init.ID;
 			
 
+
 /*******************GENERAL FUCNTIONALITIES*/
 router.get('/', function(req, res){
 	//DISPLAY LISTS IN CATEGORIES/
@@ -22,7 +23,15 @@ router.get('/', function(req, res){
 });
 
 
-
+router.get('/createList',function(req, res){ 
+	//Render page that shows:
+	/* List Name
+	   List Members
+	   Add Items */
+});
+router.post('/myLists',function(req, res){ 
+//Show all Lists including the new one
+});
 /*****************ADMIN FUCNTIONALITIES*****************/
 router.post('/Admin/listnum', function(req, res){
 	const id = req.params.listnum;

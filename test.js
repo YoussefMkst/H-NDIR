@@ -1,118 +1,102 @@
+/******************************REQUIRED MODULES**************************/
 var express = require('express'); // Loads the piece of middleware for sessions
+var app = express();
+const morgan = require('morgan');
 var bodyParser = require('body-parser');
 var http = require('http');
-var Login = require('./login');
-var reg = require('./register');
-var Profile = require('./profile');
-var dbfile = require('/login');
-
-var session = require('express-session')
-var querystring = require('querystring');
+const cookieParser = require('cookie-parser');
 var EventEmitter = require('events').EventEmitter;
 var path = require('path');
-var app = express();
-var MongoClient = require('mongodb').MongoClient;
 var events = require('events');
+var route = express.Route();
 
+/*********************Local Files Modules**************/
+var LoginRoutes = require('./api/routes/login');
+var PasswordChangeRoutes = require('./api/routes/PasswordChanged');
+var MyListsRoutes = require('./api/routes/MyLists');
+var RegisterRoutes = require('./api/routes/register');
+var ProfileRoutes = require('./api/routes/Profile');
+var LogoutRoutes = require('./api/routes/Logout');
+var UnsubscribeRoutes = require('./api/routes/unsubscribe');
+//What is that?
+/****************************Load DB **********************************/
+var db = require('./connect');
+
+/******OTHER****/
 var LoggedIn = false;
+
+//HIDE PASSWORD LATER
+var uri = "mongodb://Midri:Mmta1-49@hndirc-shard-00-00-uu47g.mongodb.net:27017,hndirc-shard-00-01-uu47g.mongodb.net:27017,hndirc-shard-00-02-uu47g.mongodb.net:27017/test?ssl=true&replicaSet=HndirC-shard-0&authSource=admin";
+
+app.engine('jade', require('jade').__express);
+app.set('view engine', 'jade');
+
+
+
+/******************Connect to db and execute code************/
+db.Connexion(uri, function(err){
+	console.log('db Connection....');
+	if(err){
+		console.log('Unable to connect to Mongo.');
+		process.exit(1);
+	}
+	else{
+		app.listen(8080, function(){
+			console.log(db.get().db("Hndir").collection("Users"));
+			console.log("Listening on port 8080...");
+	
+
+
+			/**************************SESSION & COOKIE HANDLING***********************************/
+			//app.use(session({secret :'ulala', resave = false, saveUninitialized: true, store: new MongoStore({ mongooseConnection: db})}));
+			app.set('view engine', 'ejs');	
+			app.use('/uploads', express.static('uploads'));
+			app.use(bodyParser.urlencoded({ extended: false }));
+			app.use(bodyParser.json());
+
+			//To be able to load the ejs file
+			app.use(express.static(path.join(__dirname, 'public')));
+			app.use((req, res, next)=>{
+				res.header("Access-Control-Allow-Origin", "*");
+				res.header("Access-Control-Allow-headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+				if(req.method === "OPTIONS"){
+					res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+					return res.status(200).json({});
+				}
+				next();
+			});	
+
+			//**************************************CODE TO DIFFERENT ROUTES
+
+			app.use('/login', LoginRoutes);
+			app.use('/submit', LoginRoutes);
+			app.use('/profile', ProfileRoutes);
+			app.use('/UpdateProfile', ProfileRoutes);
+			app.use('/logout', LogoutRoutes);
+			app.use('/register', RegisterRoutes);
+			app.use('/PasswordChanged', PasswordChangeRoutes);
+			app.use('/MyLists', MyListsRoutes);
+			app.use('/unsubscribe', UnsubscribeRoutes);
+			app.get('/', function(req, res){
+					res.render('pages/home');
+					console.log("Home Page");
+			});
+
+
+
+			//manage 404 errors
+			app.use(function(req, res, next){
+			    res.setHeader('Content-Type', 'text/plain');
+			    res.send(404, 'Page cannot be found!');
+			});
+
+		//});
+		});
+	}
+});
+
+
+
+/********************EXPORTS***********************/
 exports.LoggedIn= LoggedIn;
-
-//Set session time
-app.use(express.session({secret:'yoursecret', cookie:{maxAge:6000}}));
-
-
-//View engine is ejs
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: true }));
-//To be able to load the ejs file
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Connect to Local DB USING URI
-app.get('/', function(req, res){
-		res.render('pages/home');
-		console.log("Home Page");
-});
-app.get('/login', function(req, res){
-	res.render('pages/login');
-	console.log("within login");
-});
-
-app.post('/submit', function(req, res){
-		Login.Authenticate(req, res);
-});
-app.get('/register', function(req, res){
-	res.render('pages/register');
-	console.log("within register");
-
-});
-app.post('/register', function(req, res){
-	reg.Register(req, res);
-});
-app.get('/Profile', function(req, res){
-	//Profile.Profile(req, res);
-	res.render('pages/Profile');
-	console.log("within profile");
-
-});
-app.post('/UpdateProfile', function(req, res){
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('Profile');
-
-});
-
-app.get('/myLists', function(req, res){
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('myLists');
-
-});
-app.get('/ChangePassword', function(req, res){
-	if(!LoggedIn){
-		res.render('pages/ChangePassword');
-		res.end('ChangePassword');
-}	else{
-		//Ask to enter email 
-		//check if email exists
-		//if yes: Send new PW
-		//else: Redirect to same page again with warning
-
-		res.redirect('/login');
-}
-
-});
-app.post('/PasswordChanged', function(req, res){
-	res.setHeader('Content-Type', 'text/plain');
-	//print profile with message: change saved!
-	res.end('Password Changed Successfully');
-
-});
-app.get('/unsubscribe', function(req, res){
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('unsubscribe');
-
-});
-app.post('/unsubscribe', function(req, res){
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('unsubscribe');
-
-});
-app.get('/Logout', function(req, res){
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('Logout');
-
-});
-app.post('/', function(req, res){
-	LoggedIn = false;
-	//close db when session is closed 
-	dbfile.client.close();
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('Logout');
-
-});
-
-//manage 404 errors
-app.use(function(req, res, next){
-    res.setHeader('Content-Type', 'text/plain');
-    res.send(404, 'Page cannot be found!');
-});
-app.listen(8080);
-//close db when session is closed 
+module.exports = app;

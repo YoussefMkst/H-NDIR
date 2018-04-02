@@ -33,9 +33,14 @@ M3: https://docs.mongodb.com/tutorials/install-mongodb-on-windows/
 
 M4: http://mongodb.github.io/node-mongodb-native/2.2/installation-guide/installation-guide/
 
+M5: https://www.terlici.com/2015/04/03/mongodb-node-express.html
+
+>>MONGOOSE:
+
+MO1: mongoosejs.com/docs/models.html
+MO2: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
 
 >>HTML:
-
 H1: https://github.com/nodejs/node-v0.x-archive/wiki/modules#templating
 
 
@@ -47,7 +52,6 @@ J1: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/
 >>JQuery:
 
 Q1: https://learn.jquery.com/events/introduction-to-custom-events/
-
 
 
 >>NODE:
@@ -70,7 +74,15 @@ N8: https://www.npmjs.com/package/express-ejs-layouts
 
 N9: https://codeforgeek.com/2014/09/manage-session-using-node-js-express-4/
 
+N10:  https://www.npmjs.com/package/mongoose
+
+N11:  https://www.npmjs.com/package/cookie-parser
+
+N12: https://www.npmjs.com/bcrypt
 >>REST:
 
 R1: https://www.youtube.com/watch?v=Q-BpqyOT3a8
 
+>>Session:
+
+S1: https://medium.com/front-end-hacking/make-sessions-work-with-express-js-using-mongodb-62a8a3423ef5

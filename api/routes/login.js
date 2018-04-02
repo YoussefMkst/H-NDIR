@@ -29,30 +29,26 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res){
-	var answer;
+	var Logger = require('./logger');
 			//db is open in connect.js, and exported in test.js files
-			var mydb = db.get().db("Hndir");
-			var mycollection = mydb.collection("Users");
-			var query = {Username: req.body.Username, Password: req.body.Password};
-			mycollection.find(query).toArray(function(err, result) {
-		    	if (err) throw err;
-		    		//answer = result;
-			    	
-			    	if(result.length != 0){
-						init.LoggedIn = true;
-						ID = result._id;
-				    	res.redirect('/Profile');
-				    	console.log(result);
-
-			    	}
-			    	else {
-			    		console.log('../pages/login');
-				    	res.redirect('/login');
-			    		console.log(result);		
-			    	}
-			});
-	
-		 });
+			//var mydb = db.get().db("Hndir");
+	Logger.SetSession(req, function(err){
+		console.log('Back to Login');
+		console.log(Logger.get().LoggedIn);
+		if(Logger.get().LoggedIn){
+			console.log('../pages/login');
+			res.redirect('/login');
+			
+		}
+		else
+		{
+			res.redirect('/Profile');
+			
+			
+		}
+			
+	});
+});
 	
 
 module.exports = router;
