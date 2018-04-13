@@ -9,27 +9,78 @@ var app = express();
 
 
 const router = express.Router();
-const mydb = init.db;
-const ID = init.ID;
-			
 
+/*****************************RENDER HTML*/			
 
 /*******************GENERAL FUCNTIONALITIES*/
 router.get('/', function(req, res){
-	//DISPLAY LISTS IN CATEGORIES/
-	//CAT 1: ADMIN
-	//CAT 2: NOT ADMIN
-	mydb.collection("Lists").find({'_id': ID }, {'MyLists': 1});
+	res.render("MyLists.html");
+	console.log("within My lIsts");
 });
 
 
 router.get('/createList',function(req, res){ 
+
 	//Render page that shows:
 	/* List Name
 	   List Members
 	   Add Items */
 });
 router.post('/myLists',function(req, res){ 
+	var Logger = require('./Logger');
+	var i = 0;
+	var N_Mlist = "<ol id = 'inner2'>";
+	var N_Alist = "<ol id = 'inner1'>";
+	//Create HTML code for MEMBER List
+	for(i = 0; i < Logger.get().Mlists.length; i++){
+
+		//append i+1 as index, will become link to which list to access
+		N_Mlist = N_Mlist.concat("<button href='/Member/");
+		N_Mlist= N_Mlist.concat((i+1).toString());
+		N_Mlist= N_Mlist.concat("'>");
+		N_Mlist= N_Mlist.concat((Logger.get().Mlists[i])[0]);
+		N_Mlist= N_Mlist.concat("</button>");
+
+	}
+	N_Mlist.concat("</ol>");
+
+	//Create HTML code for ADMIN List
+	for(i = 0; i < Logger.get().Alists.length; i++){
+
+		//append i+1 as index, will become link to which list to access
+		N_Alist= N_Alist.concat("<button href='/Admin/");
+		N_Alist= N_Alist.concat((i+1).toString());
+		N_Alist= N_Alist.concat("'>");
+		N_Alist= N_Alist.concat((Logger.get().Alists[i])[0]);
+		N_Alist= N_Alist.concat("</button>");
+
+	}
+	N_Alist.concat("</ol>");
+	jQuery(function($){
+		$(document).ready(function(){
+			$('.admin').on('click', 'button', function(){
+				$('this').append(N_Alist);
+				$('this').remove();
+
+			});
+			
+
+			$('.member').on('click','button',function(){
+				$('this').append(N_Mlist);
+				$('this').remove();
+			});
+		});
+});
+//Show all Lists including the new one
+});
+
+router.post('/Admin',function(req, res){ 
+	res.render("/pages/MyLists.ejs");
+	console.log("within My lIsts");
+	
+	res.render("pages/MyLists");
+	console.log("within My Lists");
+
 //Show all Lists including the new one
 });
 /*****************ADMIN FUCNTIONALITIES*****************/

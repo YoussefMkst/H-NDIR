@@ -24,7 +24,7 @@ const router = express.Router();
 
 
 router.get('/', function(req, res){
-	res.render('pages/login');
+	res.sendFile(path.join(__dirname+'/views/pages/login.html'));
 	console.log("within login");
 });
 
@@ -36,13 +36,14 @@ router.post('/', function(req, res){
 		console.log('Back to Login');
 		console.log(Logger.get().LoggedIn);
 		if(Logger.get().LoggedIn){
-			console.log('../pages/login');
-			res.redirect('/login');
+			res.sendFile(path.join(__dirname+'/views/pages/Profile.html'));
 			
 		}
 		else
 		{
-			res.redirect('/Profile');
+			console.log('../pages/login');
+			res.sendFile(path.join(__dirname+'/views/pages/login.html'));
+			
 			
 			
 		}

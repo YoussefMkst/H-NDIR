@@ -1,0 +1,14 @@
+body{
+	margin : 0 auto;
+	background-image : url("img/BI.jpg");
+	background-repeat: no-repeat;
+	background-size:100% 720px;
+}
+.container{
+	width: 500px;
+	height: 400px;
+	text-align:center;
+	background-image: #34495E;
+	margin: 0 auto;
+
+}

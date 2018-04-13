@@ -10,6 +10,7 @@ var path = require('path');
 var events = require('events');
 var route = express.Route();
 
+
 /*********************Local Files Modules**************/
 var LoginRoutes = require('./api/routes/login');
 var PasswordChangeRoutes = require('./api/routes/PasswordChanged');
@@ -27,9 +28,6 @@ var LoggedIn = false;
 
 //HIDE PASSWORD LATER
 var uri = "mongodb://Midri:Mmta1-49@hndirc-shard-00-00-uu47g.mongodb.net:27017,hndirc-shard-00-01-uu47g.mongodb.net:27017,hndirc-shard-00-02-uu47g.mongodb.net:27017/test?ssl=true&replicaSet=HndirC-shard-0&authSource=admin";
-
-app.engine('jade', require('jade').__express);
-app.set('view engine', 'jade');
 
 
 
@@ -50,6 +48,12 @@ db.Connexion(uri, function(err){
 			/**************************SESSION & COOKIE HANDLING***********************************/
 			//app.use(session({secret :'ulala', resave = false, saveUninitialized: true, store: new MongoStore({ mongooseConnection: db})}));
 			app.set('view engine', 'ejs');	
+			app.engine('jade', require('jade').__express);
+			app.set('view engine', 'jade');
+			app.use(express.static(__dirname + '/public'));
+			
+			app.engine('html', require('ejs').renderFile);
+			app.set('view engine', 'html');
 			app.use('/uploads', express.static('uploads'));
 			app.use(bodyParser.urlencoded({ extended: false }));
 			app.use(bodyParser.json());
@@ -78,7 +82,7 @@ db.Connexion(uri, function(err){
 			app.use('/MyLists', MyListsRoutes);
 			app.use('/unsubscribe', UnsubscribeRoutes);
 			app.get('/', function(req, res){
-					res.render('pages/home');
+					res.sendFile(path.join(__dirname+'/views/pages/home.html'));
 					console.log("Home Page");
 			});
 

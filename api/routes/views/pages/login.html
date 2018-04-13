@@ -1,0 +1,30 @@
+<!Doctype html> 
+ 
+<html>
+  <head>
+    
+     <link rel="import" href="../partials/head.html">
+    <meta charset="utf-8" />
+    <title> Authentication </title>
+  </head>
+  <body>
+    <header> 
+      
+     <link rel="import" href="../partials/header.html">
+    </header>
+    <form id= "Authenticate" action = "/submit" method = "post">
+      Username: <input type="text" name="Username"><br>
+      Password: <input type="password"  name="Password"><br>
+            
+     <input name="Login" value="Login" type="submit" />
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://localhost:8080');
+ 
+        </script>
+    <footer>
+         <link rel="import" href="../partials/footer.html">
+    </footer>
+  </body>
+</html>

@@ -19,6 +19,8 @@ router.post('/', function(req, res){
 			var query = {Email: req.body.email};
 			mycollection.remove(query).toArray(function(err, result) {
 		    	if (err) throw err;
+
+		    	//DELETE FROM DB
 		    	console.log('unsubscribed user');
 		    });
 		    res.render('pages/home');

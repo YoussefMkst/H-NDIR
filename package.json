@@ -19,6 +19,7 @@
     "async": "^2.6.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "bootstrap": "^4.0.0",
     "bson-ext": "^1.0.5",
     "cookie-parser": "^1.4.3",
     "cordova": "^8.0.0",

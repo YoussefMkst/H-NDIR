@@ -7,7 +7,8 @@ var db = require('../../connect');
 const router = express.Router();
 
 router.get('/', function(req, res){
-	init.LoggedIn = false;
+	var Logger = require('./logger');
+	Logger.Logout();
 	res.render('pages/home');
 	console.log("back home");
 });

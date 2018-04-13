@@ -63,6 +63,25 @@ function Create(userID, List_details, DB){
 	console.log(((DB[0])[1])[0]);
 
 }
+function Generate(){
+	var i;
+	var N_Mlist= "<ol id = 'inner2'>";;
+	console.log(MemberList1.length);
+	for(i = 0; i < MemberList1.length; i++){
+		//console.log("Index i is", i);
+		//append i+1 as index, will become link to which list to access
+		N_Mlist = N_Mlist.concat("<li> <a href='/");
+		N_Mlist= N_Mlist.concat((i+1).toString());
+
+		N_Mlist= N_Mlist.concat("'>");
+		N_Mlist= N_Mlist.concat((MemberList1[i])[0]);
+		N_Mlist= N_Mlist.concat("</a></li>");
+
+	}
+	N_Mlist.concat("</ol>");
+	console.log(N_Mlist);
+};
 
 Retrieve(DB);
 Create((User1)[0], List_details, DB );
+Generate();
