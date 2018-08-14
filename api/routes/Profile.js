@@ -1,7 +1,7 @@
 var express = require('express'); // Loads the piece of middleware for sessions
 var bodyParser = require('body-parser');
 var http = require('http');
-//var uri = "mongodb+srv://Midri:Mmta1-49@cluster0.mongodb.net/test";
+
 var Connect = require('../../connect');
 
 
