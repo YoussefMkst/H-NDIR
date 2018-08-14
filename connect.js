@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 
-//var uri = "mongodb://Midri:Mmta1-49@hndirc-shard-00-00-uu47g.mongodb.net:27017,hndirc-shard-00-01-uu47g.mongodb.net:27017,hndirc-shard-00-02-uu47g.mongodb.net:27017/test?ssl=true&replicaSet=HndirC-shard-0&authSource=admin";
-
 var state = {
 	db: null,
 };
